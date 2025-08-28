@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>User Dashboard - Gas Agency System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="user.css" />
+  <link rel="stylesheet" href="main.css" />
+</head>
+<body class="user">
+  <!-- Header -->
+  <header class="user-header" role="banner">
+    <h1>Welcome, User</h1>
+    <nav aria-label="User Navigation">
+      <a href="user.html">Dashboard</a> | 
+      <a href="history.html">Booking History</a> | 
+      <a href="payment.html">Payments</a> | 
+      <a href="index.html">Logout</a>
+    </nav>
+  </header>
+
+  <!-- Booking Section -->
+  <section class="user-card booking-widget" aria-label="Gas Cylinder Booking">
+    <h2>Book a Cylinder</h2>
+    <form id="booking-form" aria-describedby="booking-help">
+      <label for="quantity">Quantity</label>
+      <select id="quantity" name="quantity" aria-required="true">
+        <option value="1" selected>1 Cylinder</option>
+        <option value="2">2 Cylinders</option>
+        <option value="3">3 Cylinders</option>
+      </select>
+
+      <button type="submit" class="user-btn success">Book Now</button>
+    </form>
+    <p id="booking-help" class="visually-hidden">Select quantity and submit to book gas cylinder.</p>
+  </section>
+
+  <!-- Notifications Section -->
+  <section class="notification-center" id="notification-center" aria-live="polite">
+    <!-- Real-time notifications injected here -->
+  </section>
+
+  <script src="firebase.js"></script>
+  <script src="user/booking.js"></script>
+  <script src="notifications.js"></script>
+  <script>
+    document.getElementById('booking-form').addEventListener('submit', async e => {
+      e.preventDefault();
+      const quantity = parseInt(document.getElementById('quantity').value);
+      await bookCylinder(quantity);
+    });
+
+    window.onload = () => {
+      listenToNotifications();
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard - Gas Agency System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="main.css" />
+</head>
+<body class="admin">
+  <!-- Sidebar -->
+  <nav class="admin-sidebar" aria-label="Admin Sidebar Navigation">
+    <div class="sidebar-logo">Gas Agency Admin</div>
+    <ul>
+      <li class="active"><a href="admin.html">Dashboard</a></li>
+      <li><a href="admin-users.html">Users</a></li>
+      <li><a href="admin-bookings.html">Bookings</a></li>
+      <li><a href="admin-notices.html">Notices</a></li>
+      <li><a href="admin-reports.html">Reports</a></li>
+      <li><a href="index.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="admin-main" role="main" tabindex="-1">
+    <header class="admin-header">
+      <h1>Admin Dashboard</h1>
+      <div id="admin-notification-bell" aria-label="Notifications" role="button" tabindex="0">🛎<span id="admin-notification-badge"></span></div>
+    </header>
+
+    <!-- Dashboard Widgets -->
+    <section class="admin-flex">
+      <div class="admin-card admin-widget">
+        <h2>Total Users</h2>
+        <p id="total-users">Loading...</p>
+      </div>
+      <div class="admin-card admin-widget">
+        <h2>Pending Bookings</h2>
+        <p id="pending-bookings">Loading...</p>
+      </div>
+      <div class="admin-card admin-widget">
+        <h2>New Notices</h2>
+        <p id="new-notices">Loading...</p>
+      </div>
+    </section>
+
+    <!-- Bookings Table -->
+    <section>
+      <h2>Recent Booking Requests</h2>
+      <table class="admin-table" aria-label="Recent Booking Requests" id="booking-requests-table">
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>Quantity</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="booking-requests-body">
+          <!-- Populated dynamically -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="firebase.js"></script>
+  <script src="admin/dashboard.js"></script>
+  <script src="admin/bookingApproval.js"></script>
+  <script src="notifications.js"></script>
+  <script>
+    // Initialize admin dashboard data and listeners
+    window.onload = async () => {
+      try {
+        await loadAdminStats(); // load total users, bookings etc. (implement in dashboard.js)
+        listenToBookingRequests(); // realtime booking approval requests
+        listenToNotifications();   // admin notifications
+      } catch(e) {
+        console.error(e);
+      }
+    };
+  </script>
+</body>
+</html>

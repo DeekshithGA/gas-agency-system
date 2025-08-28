@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gas Agency System – Fast, Secure Booking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Online gas booking, payment, and management system for customers and admins.">
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="user.css">
+  <link rel="stylesheet" href="admin.css">
+  <link rel="icon" href="favicon.png">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+  <!-- Accessibility enhancement -->
+  <script>
+    document.documentElement.lang = "en";
+  </script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" role="navigation" aria-label="Main">
+    <div class="navbar-logo">
+      <img src="favicon.png" alt="Agency Logo" style="height:34px;"> Gas Agency
+    </div>
+    <button id="navbar-toggle" class="menu-toggle" aria-label="Show menu" aria-expanded="false">&#9776;</button>
+    <ul class="nav-links" id="navbar-links">
+      <!-- Populated by navbar.js based on user role -->
+    </ul>
+    <div id="user-profile-menu"></div>
+    <div id="notification-bell" tabindex="0" aria-label="Notifications">
+      🛎 <span id="notification-badge"></span>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="card fade-in center" style="margin-top:2.5em;">
+    <div>
+      <h1>Online Gas Booking, Fast & Secure</h1>
+      <p>Convenient cylinder booking and management for households, businesses, and admins — anytime, anywhere.</p>
+      <a class="btn btn-success" href="register.html" aria-label="Register for gas booking">Get Started</a>
+      <a class="btn" href="login.html" aria-label="Login to account">Login</a>
+    </div>
+    <img src="images/gas-cylinder.png" alt="Gas Cylinder" style="max-height:170px;margin-left:3em;">
+  </header>
+
+  <!-- Features Section -->
+  <section class="grid mt-2">
+    <div class="user-card">
+      <h2>Key Features</h2>
+      <ul>
+        <li>Quick online booking and payment</li>
+        <li>Real-time approval status & notifications</li>
+        <li>User & admin dashboards with booking history</li>
+        <li>Annual quota tracking & secure payments</li>
+        <li>Responsive design for every device</li>
+        <li>Email alerts and account security controls</li>
+      </ul>
+    </div>
+    <div class="user-card">
+      <h2>Workflow</h2>
+      <ol>
+        <li>Register or login to your account</li>
+        <li>Book cylinders and view quota/availability</li>
+        <li>Pay securely via cash or Paytm QR</li>
+        <li>Receive real-time booking and payment notifications</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Notice & Notification Section -->
+  <section class="notification-center fade-in mt-2" id="notification-center" aria-live="polite">
+    <!-- Populated by notifications.js in real time -->
+    <div class="notification-item">
+      <span class="notification-title">Welcome!</span>
+      <span class="notification-date"></span>
+      <p class="notification-body">Book your gas safely and instantly – check latest admin notices here.</p>
+    </div>
+  </section>
+
+  <!-- Quick Booking/Login/Register Panel -->
+  <section class="grid center mt-2" style="max-width:900px;margin:auto;">
+    <div class="card center">
+      <form action="login.html" method="get" style="width:90%;">
+        <label for="login-email">Login instantly:</label>
+        <input type="email" id="login-email" name="email" placeholder="Email" required>
+        <button class="btn btn-success w-100" type="submit">Login</button>
+      </form>
+    </div>
+    <div class="card center">
+      <form action="register.html" method="get" style="width:90%;">
+        <label for="reg-email">Register:</label>
+        <input type="email" id="reg-email" name="email" placeholder="Email for registration" required>
+        <button class="btn w-100" type="submit">Register</button>
+      </form>
+    </div>
+    <div class="card center">
+      <a href="user.html" class="btn btn-success w-100">Book Cylinder</a>
+      <a href="admin.html" class="btn w-100" style="margin-top:1.2em;">Admin Panel</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    &copy; 2025 Gas Agency System. All rights reserved. | Fast, modern, and secure gas booking.
+  </footer>
+
+  <!-- Scripts -->
+  <script src="firebase.js"></script>
+  <script src="navbar.js"></script>
+  <script src="notifications.js"></script>
+  <script>
+    // Initialize Navbar and Notifications
+    initializeNavbar();
+    listenToNotifications();
+  </script>
+</body>
+</html>
